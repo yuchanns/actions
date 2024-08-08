@@ -1,0 +1,16 @@
+name: m1_runtime
+on:
+  workflow_dispatch:
+
+jobs:
+  rscc_tests:
+    runs-on: macos-14
+    container: ubuntu:22.04
+    name: Test on macOS arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "yuchanns/rscc"
+      - name: Run commands
+        run:
+          uname -a
