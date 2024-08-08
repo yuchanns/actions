@@ -4,13 +4,14 @@ on:
 
 jobs:
   rscc_tests:
-    runs-on: macos-14
-    container: ubuntu:22.04
+    runs-on: macos-latest
     name: Test on macOS arm64
     steps:
       - uses: actions/checkout@v4
         with:
           repository: "yuchanns/rscc"
       - name: Run commands
-        run:
-          uname -a
+        run: |
+          sed -i '' 's/"-static", //g' tests/test.rs
+          sed -i '' 's/main/_main/g' src/codegen.rs
+          cargo test
